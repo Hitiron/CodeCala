@@ -1,0 +1,25 @@
+def partion(v,left,right):
+    key = v[right]
+    low = left
+    high = right
+    while(low < high):
+        while(low < high and v[low] <= key):
+            low += 1
+        v[high] = v[low]
+        while(low < high and v[high] >= key):
+            high -= 1
+        v[low] = v[high]
+        v[high] = key
+    return high
+
+def quicksort(v,left,right):
+    if left < right:
+        p = partion(v,left,right)
+        quicksort(v,left,p-1)
+        quicksort(v,p+1,right)
+    return v
+
+s=[6,8,1,4,3,3,5,11,2,6,7,10,10,10,10,5,5,5,6,6,2,2]
+print('before sort:',s)
+quicksort(s,0,len(s)-1)
+print('after sort:',s)
